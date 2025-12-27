@@ -565,9 +565,9 @@ pre code {
 	border-left: none !important;
 	background: linear-gradient(
 		90deg, 
-		rgba(254, 93, 219, 0.517) 10%,    /* Pink - 15% opacity */
-		rgba(125, 147, 255, 0.788) 50%,  /* Blue */
-		rgba(62, 229, 255, 0.616) 75%,   /* Cyan */
+		rgba(254, 93, 219, 0.61) 10%,    /* Pink - 15% opacity */
+		rgba(125, 147, 255, 0.949) 60%,  /* Blue */
+		rgba(62, 229, 255, 0.699) 85%,   /* Cyan */
 		rgba(245, 255, 201, 0.57) 100%  /* Yellow */
 	);
 	padding: 16px 24px;
@@ -707,19 +707,85 @@ input[type="checkbox"].task-list-item-checkbox:checked::after {
   text-decoration: none;
 }
 
+/* ============================
+    TAGS
+    =========================== */
+/* Reading mode + rendered */
+a.tag,
 .tag {
-  background-color: var(--tag-background);
-  color: var(--tag-color);
+  background-image: var(--tag-background);
+  color: var(--tag-color) !important;
   padding: 0.2em 0.6em;
   border-radius: var(--radius-m);
   font-size: 1em;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+/* ===== TAGS: EDITOR (Live Preview / CM6) ===== */
+/* 1) Style the whole tag token */
+.markdown-source-view.mod-cm6 .cm-content .cm-hashtag {
+  background: var(--tag-background) !important;  /* works with solid or gradient */
+  color: var(--tag-color) !important;
+  padding: 0.22em 0.6em !important;
+  border-radius: var(--radius-m) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1.5 !important;
+  box-shadow: none !important;
+}
+/* 2) Kill the separate paint on the # formatting token */
+.markdown-source-view.mod-cm6 .cm-content .cm-formatting-hashtag {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
 }
 
-.tag:hover {
-  background-color: var(--tag-background-hover);
+/* ===== TAGS: MOBILE TEST - BRIGHT PINK TO SEE IF IT WORKS ===== */
+.is-mobile a.tag,
+.is-mobile .tag,
+.is-phone a.tag,
+.is-phone .tag,
+body.is-mobile .tag,
+body.is-mobile a.tag,
+.is-mobile .markdown-preview-view .tag,
+.is-mobile .markdown-rendered .tag,
+.is-mobile .cm-hashtag,
+.is-phone .cm-hashtag,
+body.is-mobile .cm-hashtag {
+  background: #3ee5ff !important;  /* BRIGHT PINK - you WILL see this */
+  color: #000001 !important;       /* BLACK text */
+  padding: 0.2em 0.6em !important;
+  border-radius: 8px !important;
+  font-size: 1em !important;
+  font-weight: 500 !important;
+  line-height: 1.5em !important;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
+
+/* ===== TAGS: MOBILE EDITING MODE ===== */
+.is-mobile .markdown-source-view.mod-cm6 .cm-content .cm-hashtag,
+.is-mobile .markdown-source-view .cm-hashtag,
+.is-phone .markdown-source-view.mod-cm6 .cm-content .cm-hashtag,
+.is-phone .markdown-source-view .cm-hashtag,
+body.is-mobile .markdown-source-view.mod-cm6 .cm-content .cm-hashtag,
+body.is-mobile .markdown-source-view .cm-hashtag,
+.is-mobile .cm-line .cm-hashtag,
+.is-phone .cm-line .cm-hashtag {
+  background: #3ee5ff !important;  /* BRIGHT PINK */ 
+  color: #000001 !important;
+  padding: 0.22em 0.6em !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: auto;
+  line-height: 1.3em !important;
+  border: none !important;
+  box-shadow: none !important;
+} 
 
 /* ========================================
    GRADIENT DIVIDERS
@@ -736,12 +802,11 @@ input[type="checkbox"].task-list-item-checkbox:checked::after {
         var(--divider-color-3) var(--divider-stop-3), 
         var(--divider-color-4) var(--divider-stop-4)
     ) !important;
-    margin: 1.5em 1.5em !important;
+    margin: 2em 0 !important;
     border-radius: 2px;
     opacity: 1 !important;
     line-height: 1.7 !important; /* ONLY in reading mode */
 }
-
 /* Source/editing mode - normal spacing */
 .cm-line hr,
 hr {
@@ -754,7 +819,7 @@ hr {
         var(--divider-color-3) var(--divider-stop-3), 
         var(--divider-color-4) var(--divider-stop-4)
     ) !important;
-    margin: 0.5em 0.5em !important;
+    margin: 0.6em 0 !important;
     border-radius: 2px;
     opacity: 1 !important;
     /* NO line-height here */
